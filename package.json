@@ -1,0 +1,14 @@
+{
+  "name": "uomi-hyperstition-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@polkadot/api": "^15.5.1",
+    "twitter-api-v2": "^1.19.0",
+    "web3": "^4.16.0"
+  }
+}
