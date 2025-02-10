@@ -33,6 +33,17 @@ yarn install
 yarn start
 ```
 
+## Run on Github codespaces
+
+Open the repository on Github and click on the "Code" button. Then, click on the "Open with Codespaces" option.
+
+When the codespace is ready, run the following commands:
+
+```bash
+yarn install
+yarn start
+```
+
 ## Build the AI Agent
 
 You can build the AI agent using the [WASP, the Official UOMI SDK](https://github.com/Uomi-network/WASP). Here there is an example of Rust code that can be used on the WASP project to build a compatible AI agent:
