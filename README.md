@@ -163,3 +163,11 @@ More informations about building and deploying the AI agent can be found on the 
 4. Copy the access token and access token secret.
 
 <img src="./assets/tw-04-copy-access-token.png" alt="Copy the access token and access token secret" width="500"/>
+
+5. From the application dashboard, go to "Authentication settings" to complete the setup.
+
+<img src="./assets/tw-05-setup-auth-settings.png" alt="Authentication settings" width="500"/>
+
+6. On the "Authentication settings" page, select "Read and write" and save the changes.
+
+<img src="./assets/tw-06-auth-settings.png" alt="Select read and write" width="500"/>
