@@ -146,3 +146,20 @@ pub extern "C" fn run() {
 ```
 
 More informations about building and deploying the AI agent can be found on the [Documentation](https://docs.uomi.ai/build/build-an-agent/introduction).
+
+## Configure twitter APIs
+
+1. Go to [Twitter Developer](https://developer.x.com/en/portal/projects-and-apps) and create a new project.
+
+2. Create a new app inside the project and copy the API key and API secret key.
+
+<img src="./assets/tw-01-create-app.png" alt="Create a new app" width="500"/>
+<img src="./assets/tw-02-create-app.png" alt="Copy the API key and API secret key" width="500"/>
+
+3. Go to "Keys and tokens" to generate the access token and access token secret.
+
+<img src="./assets/tw-03-generate-access-token.png" alt="Generate the access token and access token secret" width="500"/>
+
+4. Copy the access token and access token secret.
+
+<img src="./assets/tw-04-copy-access-token.png" alt="Copy the access token and access token secret" width="500"/>
