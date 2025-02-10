@@ -3,19 +3,6 @@
 This is a template for creating a Twitter aget using a UOMI.
 This is the web2 module of a Twitter agent used to permit the onchain agent to interact with the Twitter API.
 
-## Requirements
-
-- Node.js (v20+)
-- Yarn (install with `npm install -g yarn`)
-
-## Installation
-
-```bash
-git clone ...
-cd uomi-twitter-bot-template
-yarn install
-```
-
 ## Configuration
 
 All configuration is store on the `./config` folder. There are three files:
@@ -24,7 +11,23 @@ All configuration is store on the `./config` folder. There are three files:
 - [`twitter.js`](https://github.com/Uomi-network/uomi-twitter-bot-template/blob/main/config/twitter.js): Twitter API configuration used to authenticate the bot with the Twitter API.
 - [`chain.js`](https://github.com/Uomi-network/uomi-twitter-bot-template/blob/main/config/chain.js): Chain configuration used to interact with the UOMI chain.
 
-## Usage
+## Run locally
+
+### Requirements
+
+- Git
+- Node.js (v20+)
+- Yarn (install with `npm install -g yarn`)
+
+### Installation
+
+```bash
+git clone https://github.com/Uomi-network/uomi-twitter-bot-template
+cd uomi-twitter-bot-template
+yarn install
+```
+
+### Usage
 
 ```bash
 yarn start
