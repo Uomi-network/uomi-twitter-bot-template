@@ -151,10 +151,10 @@ More informations about building and deploying the AI agent can be found on the 
 
 1. Go to [Twitter Developer](https://developer.x.com/en/portal/projects-and-apps) and create a new project.
 
-2. Create a new app inside the project and copy the API key and API secret key.
+2. Create a new app inside the project and copy the API Key and API Key Secret.
 
 <img src="./assets/tw-01-create-app.png" alt="Create a new app" width="500"/>
-<img src="./assets/tw-02-create-app.png" alt="Copy the API key and API secret key" width="500"/>
+<img src="./assets/tw-02-create-app.png" alt="Copy the API Key and API Key Secret" width="500"/>
 
 3. Go to "Keys and tokens" to generate the access token and access token secret.
 
