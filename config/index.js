@@ -1,5 +1,5 @@
 module.exports = {
-  bot: require('./bot'),
+  telegram: require('./telegram'),
+  twitter: require('./twitter'),
   chain: require('./chain'),
-  twitter: require('./twitter')
 }

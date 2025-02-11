@@ -1,15 +1,17 @@
-# UOMI TWITTER BOT TEMPLATE
+# UOMI WEB2 PROXY TEMPLATE
 
-This is a template for creating a Twitter aget using a UOMI.
-This is the web2 module of a Twitter agent used to permit the onchain agent to interact with the Twitter API.
+This is a template to integrate a UOMI agent with a web2 service.
+Using this template, you can create a bot for:
+- Telegram
+- Twitter
 
 ## Configuration
 
 All configuration is store on the `./config` folder. There are three files:
 
-- [`bot.js`](https://github.com/Uomi-network/uomi-twitter-bot-template/blob/main/config/bot.js): Bot configuration used to find arguments for the weets and user to interact with.
-- [`twitter.js`](https://github.com/Uomi-network/uomi-twitter-bot-template/blob/main/config/twitter.js): Twitter API configuration used to authenticate the bot with the Twitter API.
-- [`chain.js`](https://github.com/Uomi-network/uomi-twitter-bot-template/blob/main/config/chain.js): Chain configuration used to interact with the UOMI chain.
+- [`telegram.js`](https://github.com/Uomi-network/uomi-twitter-bot-template/blob/main/config/telegram.js): Telegram configuration used to interact with the users on Telegram.
+- [`twitter.js`](https://github.com/Uomi-network/uomi-twitter-bot-template/blob/main/config/twitter.js): Twitter configuration used to make tweets and interact with the users on Twitter.
+- [`chain.js`](https://github.com/Uomi-network/uomi-twitter-bot-template/blob/main/config/chain.js): Chain configuration used to interact with the UOMI agent on chain.
 
 ## Run locally
 

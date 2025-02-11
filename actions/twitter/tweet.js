@@ -1,31 +1,31 @@
-const config = require('../config')
-const storageService = require('../services/storageService')
-const uomiService = require('../services/uomiService')
-const twitterService = require('../services/twitterService')
+const config = require('../../config')
+const storageService = require('../../services/storageService')
+const uomiService = require('../../services/uomiService')
+const twitterService = require('../../services/twitterService')
 
 module.exports = async () => {
   try {
     const now = new Date().getTime()
 
     // be sure to not have tweeted more than maxDailyTweets
-    const lastTweets = storageService.getLastTweets(config.bot.maxDailyTweets)
+    const lastTweets = storageService.getLastTwitterTweets(config.twitter.maxDailyTweets)
     const firstTweet = lastTweets[lastTweets.length - 1]
     const firstTweetTimestamp = firstTweet ? new Date(firstTweet.timestamp).getTime() : 0
-    if (lastTweets.length >= config.bot.maxDailyTweets && now - firstTweetTimestamp < 24 * 60 * 60 * 1000) throw 'Max daily tweets reached!'
+    if (lastTweets.length >= config.twitter.maxDailyTweets && now - firstTweetTimestamp < 24 * 60 * 60 * 1000) throw 'Max daily tweets reached!'
 
     // be sure to wait at least the tweetInterval before tweeting again
-    const lastTweet = storageService.getLastTweet()
+    const lastTweet = storageService.getLastTwitterTweet()
     const lastTweetTimestamp = lastTweet ? new Date(lastTweet.timestamp).getTime() : 0
-    if (now - lastTweetTimestamp < config.bot.tweetInterval) throw 'Waiting for next tweet...'
+    if (now - lastTweetTimestamp < config.twitter.tweetInterval) throw 'Waiting for next tweet...'
 
     // find a random topic
-    const topic = config.bot.topicsOfInterest[Math.floor(Math.random() * config.bot.topicsOfInterest.length)]
+    const topic = config.twitter.topicsOfInterest[Math.floor(Math.random() * config.twitter.topicsOfInterest.length)]
     if (!topic) throw 'No topic found!'
     console.info('- 📚 Topic:', topic)
 
     // prepare chat history
     const chatHistory = []
-    storageService.getLastTweets(100).forEach(tweet => {
+    storageService.getLastTwitterTweets(100).forEach(tweet => {
       chatHistory.push({ role: 'user', content: 'make a tweet' })
       chatHistory.push({ role: 'assistant', content: tweet.content })
     })
@@ -38,7 +38,6 @@ module.exports = async () => {
 
     // call the agent
     const inputData = JSON.stringify(chatHistory)
-    console.log('inputData', inputData)
     const response = await uomiService.callAgent(inputData)
     console.info('- 📡 Agent response tx hash:', response.transactionHash)
 
@@ -80,7 +79,7 @@ module.exports = async () => {
     await twitterService.tweet(`${outputCleaned}\n\nProof of Autonomous AI Execution ➞ https://app.uomi.ai/hist?id=${requestId}`)
 
     // save the tweet
-    await storageService.addTweet({
+    await storageService.addTwitterTweet({
       text: outputCleaned,
       topic: topic
     })

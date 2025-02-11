@@ -1,25 +1,25 @@
-const config = require("../config")
-const storageService = require("../services/storageService")
-const twitterService = require("../services/twitterService")
-const uomiService = require("../services/uomiService")
+const config = require("../../config")
+const storageService = require("../../services/storageService")
+const twitterService = require("../../services/twitterService")
+const uomiService = require("../../services/uomiService")
 
 module.exports = async () => {
   try {
     const now = new Date().getTime()
     
     // be sure to not have interact more than maxDailyInteracts
-    const lastInteracts = storageService.getLastReplies(config.bot.maxDailyInteracts)
+    const lastInteracts = storageService.getLastTwitterReplies(config.twitter.maxDailyInteracts)
     const firstInteract = lastInteracts[lastInteracts.length - 1]
     const firstInteractTimestamp = firstInteract ? new Date(firstInteract.timestamp).getTime() : 0
-    if (lastInteracts.length >= config.bot.maxDailyInteracts && now - firstInteractTimestamp < 24 * 60 * 60 * 1000) throw 'Max daily interacts reached!'
+    if (lastInteracts.length >= config.twitter.maxDailyInteracts && now - firstInteractTimestamp < 24 * 60 * 60 * 1000) throw 'Max daily interacts reached!'
 
     // be sure to wait at least the interactionInterval before interacting again
-    const lastInteract = storageService.getLastReply()
+    const lastInteract = storageService.getLastTwitterReply()
     const lastInteractTimestamp = lastInteract ? new Date(lastInteract.timestamp).getTime() : 0
-    if (now - lastInteractTimestamp < config.bot.interactionInterval) throw 'Waiting for next interact...'
+    if (now - lastInteractTimestamp < config.twitter.interactionInterval) throw 'Waiting for next interact...'
 
     // find a random important user
-    const importantUsers = config.bot.importantUsers
+    const importantUsers = config.twitter.importantUsers
     const importantUser = importantUsers[Math.floor(Math.random() * importantUsers.length)]
     if (!importantUser) throw 'No important user found!'
     console.info('- 📚 Important user:', importantUser)
@@ -31,7 +31,7 @@ module.exports = async () => {
     console.info('- 📚 Random tweet:', randomTweet)
 
     // be sure random tweet is not already replied
-    const alreadyReplied = storageService.findReply(randomTweet.id)
+    const alreadyReplied = storageService.findTwitterReply(randomTweet.id)
     if (alreadyReplied) throw 'Tweet already replied!'
 
     // prepare chat history
@@ -86,7 +86,7 @@ module.exports = async () => {
     await twitterService.reply(randomTweet.id, `${outputCleaned}\n\nProof of Autonomous AI Execution ➞ https://app.uomi.ai/hist?id=${requestId}`)
 
     // save the reply
-    await storageService.addReply({
+    await storageService.addTwitterReply({
       id: randomTweet.id,
       originalTweet: randomTweet.text,
       replyContent: outputCleaned,

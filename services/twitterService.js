@@ -49,7 +49,7 @@ class TwitterService {
 
   async getMyTweets() {
     try {
-      const tweets = await this.searchTweets(`from:${config.bot.botUsername} -is:reply -is:retweet`)
+      const tweets = await this.searchTweets(`from:${config.twitter.botUsername} -is:reply -is:retweet`)
       return tweets.data
     } catch (error) {
       console.error('TwitterService.getMyTweets:', error)
@@ -59,7 +59,7 @@ class TwitterService {
 
   async like(tweetId) {
     try {
-      await this.client.v2.like(config.bot.botId, tweetId)
+      await this.client.v2.like(config.twitter.botId, tweetId)
     } catch (error) {
       console.error('TwitterService.like:', error)
       throw error
@@ -78,7 +78,7 @@ class TwitterService {
 
   async follow(userId) {
     try {
-      await this.client.v2.follow(config.bot.botId, userId)
+      await this.client.v2.follow(config.twitter.botId, userId)
     } catch (error) {
       console.error('TwitterService.follow:', error)
       throw error

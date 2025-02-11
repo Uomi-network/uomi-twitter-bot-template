@@ -1,25 +1,40 @@
 const config = require('./config')
 const storageService = require('./services/storageService')
 const uomiService = require('./services/uomiService')
-const tweet = require('./actions/tweet')
-const follow = require('./actions/follow')
-const interact = require('./actions/interact')
+const telegramChat = require('./actions/telegram/chat')
+const twitterTweet = require('./actions/twitter/tweet')
+const twitterInteract = require('./actions/twitter/interact')
+const twitterFollow = require('./actions/twitter/follow')
+
+const telegram = async () => {
+  console.log('-----> TELEGRAM chat...')
+  await telegramChat()
+}
+
+const twitter = async () => {
+  console.log('-----> TWITTER Tweeting...')
+  await twitterTweet()
+
+  // NOTE: Interactions and follows are available only for premium twitter accounts.
+  // Uncomment the following lines if you have a premium account.
+
+  // console.log('-----> TWITTER Interacting...')
+  // await twitterInteract()
+  // console.log('-----> TWITTER Following...')
+  // await twitterFollow()
+}
 
 const loop = async () => {
-  console.log('🔄 Looping...')
+  console.log('🔄 Loop...')
 
-  console.log('-----> Tweeting...')
-  await tweet()
-  console.log('-----> Interacting...')
-  await interact()
-  // console.log('-----> Following...')
-  // await follow()
+  if (config.telegram.active) await telegram()
+  if (config.twitter.active) await twitter()
 
-  setTimeout(loop, 5000)
+  setTimeout(loop, 500)
 }
 
 const _ = async () => {
-  console.info('🤖 Staring Twitter Bot', config.bot.botUsername)
+  console.info('🤖 Staring Web2 proxy')
 
   console.info('Initializing storage service...')
   await storageService.init()
@@ -29,7 +44,8 @@ const _ = async () => {
   await uomiService.init()
   console.info('✅ Uomi service initialized!')
 
-  console.info('🤖 Twitter Bot started!')
+  console.info('🤖 Web2 proxy started!')
+
   loop()
 }
 
